@@ -1,0 +1,659 @@
+.olivia {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #212121;
+  background: #fff;
+}
+
+/* 메인 페이지 전용 — 상단 브랜드 */
+.olivia .olivia-brand-slogan {
+  font-size: clamp(1.5rem, 4vw, 2.05rem);
+  color: #f9a825;
+  padding-left: 1.5rem;
+}
+
+.olivia .olivia-logo-leaf {
+  font-size: clamp(2.6rem, 6.5vw, 4.25rem);
+}
+
+.olivia .olivia-logo-text {
+  font-size: clamp(3.15rem, 8.5vw, 5.5rem);
+}
+
+.olivia .olivia-util {
+  font-size: 0.9375rem;
+}
+
+.olivia .olivia-mainnav-link {
+  font-size: 1.0625rem;
+}
+
+.olivia .olivia-search-input {
+  font-size: 1rem;
+}
+
+.olivia .olivia-navbar-top {
+  padding: 0.85rem 0 0.75rem;
+}
+
+.olivia .olivia-brand-slogan {
+  padding: 0.4rem 1.1rem 0.55rem;
+}
+
+.olivia .olivia-search {
+  padding: 0.5rem 0.7rem;
+  max-width: 21.5rem;
+}
+
+@media (min-width: 900px) {
+  .olivia .olivia-search {
+    width: 17.75rem;
+  }
+
+  .olivia .olivia-navbar-right {
+    min-width: 19.5rem;
+  }
+}
+
+.olivia .olivia-search-icon {
+  font-size: 1.05rem;
+}
+
+.olivia .olivia-mainnav {
+  padding: 0.7rem 1.1rem;
+}
+
+.olivia .olivia-cart-badge {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.675rem;
+}
+
+.olivia-shell {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ——— Alerts ——— */
+.olivia-alerts {
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.olivia-banner {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #166534;
+  background: #e8f5e9;
+  border-radius: 4px;
+  border: 1px solid #c8e6c9;
+}
+
+.olivia-banner--info {
+  color: #1565c0;
+  background: #e3f2fd;
+  border-color: #90caf9;
+}
+
+/* ——— Hero slider ——— */
+.olivia-hero {
+  position: relative;
+}
+
+.olivia-hero-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.olivia-hero-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.olivia-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-height: 19rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.25rem 1.9rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.olivia-slide--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+.olivia-slide--photo .olivia-slide-inner {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .olivia-slide {
+    min-height: 25rem;
+  }
+}
+
+.olivia-slide--1 {
+  background: linear-gradient(135deg, #1b5e20 0%, #43a047 45%, #7cb342 100%);
+}
+
+.olivia-slide--2 {
+  background: linear-gradient(135deg, #263238 0%, #37474f 40%, #5d4037 100%);
+}
+
+.olivia-slide--3 {
+  background: linear-gradient(135deg, #33691e 0%, #558b2f 50%, #9ccc65 100%);
+}
+
+.olivia-slide-inner {
+  text-align: center;
+  color: #fff;
+  max-width: 44rem;
+}
+
+.olivia-slide-kicker {
+  margin: 0 0 0.55rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+.olivia-slide-title {
+  margin: 0 0 0.4rem;
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.olivia-slide-sub {
+  margin: 0;
+  font-size: 1.15rem;
+  opacity: 0.95;
+}
+
+.olivia-hero-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.85rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.olivia-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.olivia-dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.olivia-dot--on {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* ——— Sections ——— */
+.olivia-section {
+  padding: 3rem 0 2.5rem;
+}
+
+.olivia-section--muted {
+  background: #fafafa;
+}
+
+.olivia-section-head {
+  text-align: center;
+  margin-bottom: 1.9rem;
+}
+
+.olivia-icon {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.olivia-icon--heart {
+  color: #ff7043;
+}
+
+.olivia-icon--star {
+  color: #ffc107;
+  font-size: 1.35rem;
+}
+
+.olivia-icon--bag {
+  font-size: 1.2rem;
+}
+
+.olivia-section-title {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #212121;
+}
+
+/* ——— Product rows ——— */
+.olivia-row5,
+.olivia-row4,
+.olivia-grid5 {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.olivia-row5 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .olivia-row5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .olivia-row5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.olivia-row4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 900px) {
+  .olivia-row4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.olivia-grid5 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .olivia-grid5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .olivia-grid5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.olivia-pcard-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.olivia-pcard-link:focus-visible {
+  outline: 2px solid #2e7d32;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.olivia-pcard {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  height: 100%;
+  cursor: pointer;
+}
+
+.olivia-section--muted .olivia-pcard {
+  background: #fff;
+}
+
+.olivia-pcard:hover {
+  border-color: #e0e0e0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.olivia-pthumb {
+  aspect-ratio: 1;
+  background: #eeeeee;
+}
+
+.olivia-pthumb--photo {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+.olivia-products-status,
+.olivia-products-error {
+  margin: 0;
+  padding: 2.15rem 0;
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.olivia-products-error {
+  color: #b91c1c;
+}
+
+.olivia-pthumb--kiwi {
+  background: linear-gradient(145deg, #cddc39 0%, #689f38 55%, #33691e 100%);
+}
+
+.olivia-pthumb--apple {
+  background: linear-gradient(145deg, #ffcdd2 0%, #e57373 45%, #c62828 100%);
+}
+
+.olivia-pthumb--grape {
+  background: linear-gradient(145deg, #e1bee7 0%, #8e24aa 50%, #4a148c 100%);
+}
+
+.olivia-pthumb--melon {
+  background: linear-gradient(145deg, #fff9c4 0%, #fdd835 40%, #f9a825 100%);
+}
+
+.olivia-pthumb--berry {
+  background: linear-gradient(145deg, #90caf9 0%, #5c6bc0 50%, #283593 100%);
+}
+
+.olivia-pthumb--mango {
+  background: linear-gradient(145deg, #ffe082 0%, #ffa000 50%, #e65100 100%);
+}
+
+.olivia-pthumb--tomato {
+  background: linear-gradient(145deg, #ffab91 0%, #f4511e 50%, #bf360c 100%);
+}
+
+.olivia-pthumb--greengrape {
+  background: linear-gradient(145deg, #c5e1a5 0%, #7cb342 50%, #33691e 100%);
+}
+
+.olivia-pthumb--strawberry {
+  background: linear-gradient(145deg, #f8bbd0 0%, #ec407a 50%, #880e4f 100%);
+}
+
+.olivia-pthumb--banana {
+  background: linear-gradient(145deg, #fff9c4 0%, #ffee58 50%, #f9a825 100%);
+}
+
+.olivia-pthumb--orange {
+  background: linear-gradient(145deg, #ffe0b2 0%, #fb8c00 50%, #e65100 100%);
+}
+
+.olivia-pthumb--lemon {
+  background: linear-gradient(145deg, #fffde7 0%, #fff176 45%, #fdd835 100%);
+}
+
+.olivia-pthumb--grapefruit {
+  background: linear-gradient(145deg, #ffccbc 0%, #ff7043 50%, #d84315 100%);
+}
+
+.olivia-pthumb--avocado {
+  background: linear-gradient(145deg, #dcedc8 0%, #689f38 50%, #33691e 100%);
+}
+
+.olivia-pthumb--kiwi2 {
+  background: linear-gradient(145deg, #aed581 0%, #558b2f 55%, #1b5e20 100%);
+}
+
+.olivia-pthumb--watermelon {
+  background: linear-gradient(145deg, #ffcdd2 0%, #e53935 35%, #1b5e20 100%);
+}
+
+.olivia-pthumb--peach {
+  background: linear-gradient(145deg, #ffccbc 0%, #ffab91 50%, #ff7043 100%);
+}
+
+.olivia-pthumb--plum {
+  background: linear-gradient(145deg, #d1c4e9 0%, #7e57c2 50%, #4527a0 100%);
+}
+
+.olivia-pthumb--cherry {
+  background: linear-gradient(145deg, #ef9a9a 0%, #c62828 55%, #b71c1c 100%);
+}
+
+.olivia-pname {
+  margin: 0;
+  padding: 0.85rem 0.85rem 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #212121;
+}
+
+.olivia-prow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 0.85rem;
+  min-height: 1.2rem;
+}
+
+.olivia-pwas {
+  font-size: 0.8125rem;
+  color: #9e9e9e;
+  text-decoration: line-through;
+}
+
+.olivia-poff {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #c62828;
+}
+
+.olivia-pprice {
+  margin: 0;
+  padding: 0.25rem 0.85rem 0.85rem;
+  font-size: 1rem;
+  color: #424242;
+}
+
+.olivia-pprice strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* ——— Review cards ——— */
+.olivia-rcard {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.olivia-rcard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.olivia-review {
+  padding: 0.85rem 0.85rem 0.95rem;
+  border-top: 1px solid #f5f5f5;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.5rem;
+  align-items: start;
+}
+
+.olivia-review-avatar {
+  grid-row: 1 / span 2;
+  width: 2.15rem;
+  height: 2.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #fff;
+  background: linear-gradient(135deg, #66bb6a, #2e7d32);
+  border-radius: 999px;
+}
+
+.olivia-review-text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #616161;
+}
+
+.olivia-review-by {
+  margin: 0;
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: #9e9e9e;
+}
+
+/* ——— Promo banner ——— */
+.olivia-promo {
+  padding: 0 0 2.15rem;
+}
+
+.olivia-promo-inner {
+  position: relative;
+  min-height: 13rem;
+  border-radius: 4px;
+  padding: 2.5rem 1.9rem;
+  background-color: #263238;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.olivia-promo-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(26, 35, 39, 0.92) 0%,
+    rgba(26, 35, 39, 0.72) 42%,
+    rgba(26, 35, 39, 0.35) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.olivia-promo-inner .olivia-promo-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.olivia-promo-copy {
+  max-width: 24rem;
+  color: #fff;
+}
+
+.olivia-promo-kicker {
+  margin: 0 0 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #aed581;
+}
+
+.olivia-promo-title {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.olivia-promo-desc {
+  margin: 0;
+  font-size: 1.0625rem;
+  opacity: 0.9;
+}
+
+/* ——— Footer ——— */
+.olivia-footer {
+  margin-top: auto;
+  padding: 2.15rem 0 2.75rem;
+  background: #eeeeee;
+  border-top: 1px solid #e0e0e0;
+}
+
+.olivia-footnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.875rem;
+}
+
+.olivia-footlink {
+  color: #424242;
+  text-decoration: none;
+}
+
+.olivia-footlink:hover {
+  text-decoration: underline;
+}
+
+.olivia-footbiz {
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #757575;
+}
+
+.olivia-footbiz p {
+  margin: 0 0 0.35rem;
+}
+
+.olivia-footbiz strong {
+  color: #424242;
+}
+
+.olivia-foot-copy {
+  margin-top: 0.75rem !important;
+  color: #9e9e9e;
+}

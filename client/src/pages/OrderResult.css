@@ -1,0 +1,353 @@
+.order-result-page {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.order-result-main {
+  padding: 2.5rem 1rem 4rem;
+}
+
+.order-result-shell {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.order-result-eyebrow {
+  margin: 0 0 2rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.order-result-hero {
+  margin-bottom: 2rem;
+}
+
+.order-result-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.order-result-icon--success {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.order-result-icon--failure {
+  color: #dc2626;
+  background: #fee2e2;
+  font-size: 1.9rem;
+}
+
+.order-result-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.35;
+}
+
+.order-result-desc {
+  margin: 0 0 0.35rem;
+  font-size: 0.9375rem;
+  color: #374151;
+}
+
+.order-result-desc--muted {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.order-result-card {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-result-card--failure {
+  background: #fafafa;
+}
+
+.order-result-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.order-result-card-icon {
+  font-size: 1.125rem;
+}
+
+.order-result-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  margin: 0;
+}
+
+.order-result-meta dt {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.order-result-meta dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.order-result-divider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin: 1.25rem 0;
+}
+
+.order-result-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.order-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.order-result-item-name {
+  margin: 0 0 0.2rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.order-result-item-opt,
+.order-result-item-qty {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+.order-result-item-price {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+  white-space: nowrap;
+}
+
+.order-result-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.order-result-total dt {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.order-result-total dd {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.order-result-tips {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.order-result-tips li + li {
+  margin-top: 0.35rem;
+}
+
+/* 배송 정보 */
+.order-result-delivery-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.125rem;
+  margin-bottom: 1.25rem;
+  background: #eff6ff;
+  border-radius: 0.625rem;
+}
+
+.order-result-delivery-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #fff;
+  background: #2563eb;
+  border-radius: 50%;
+}
+
+.order-result-delivery-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.order-result-delivery-date {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.order-result-address-title {
+  margin: 0 0 0.65rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.order-result-address {
+  margin: 0;
+  font-style: normal;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.65;
+}
+
+.order-result-address p {
+  margin: 0;
+}
+
+/* 다음 단계 */
+.order-result-card--steps {
+  background: #fafafa;
+}
+
+.order-result-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.order-result-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.order-result-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.order-result-step-num--green {
+  background: #16a34a;
+}
+
+.order-result-step-num--blue {
+  background: #2563eb;
+}
+
+.order-result-step-num--purple {
+  background: #7c3aed;
+}
+
+.order-result-step-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.order-result-step-desc {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.order-result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.order-result-btn {
+  display: block;
+  padding: 0.9rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.order-result-btn--primary {
+  color: #fff;
+  background: #111;
+}
+
+.order-result-btn--primary:hover {
+  background: #333;
+}
+
+.order-result-btn--secondary {
+  color: #111;
+  background: #fff;
+  border: 1px solid #d1d5db;
+}
+
+.order-result-btn--secondary:hover {
+  background: #f9fafb;
+}
+
+.order-result-btn--ghost {
+  color: #6b7280;
+  background: transparent;
+}
+
+.order-result-btn--ghost:hover {
+  color: #111;
+}

@@ -1,0 +1,403 @@
+.orders-page {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.orders-main {
+  padding: 2rem 0 3.5rem;
+}
+
+.orders-shell {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.orders-title {
+  margin: 0 0 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* 탭 — 가로 스크롤 pill */
+.orders-tabs-wrap {
+  margin: 0 -1rem 1.5rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.orders-tabs-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.orders-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  min-width: 100%;
+  padding-bottom: 0.15rem;
+}
+
+.orders-tab {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;
+  background: #e8e8e8;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.orders-tab:hover:not(.orders-tab--active) {
+  background: #dedede;
+}
+
+.orders-tab--active {
+  color: #fff;
+  background: #111;
+}
+
+.orders-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #374151;
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+.orders-tab--active .orders-tab-count {
+  color: #fff;
+  background: #6b7280;
+}
+
+.orders-status {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+  font-size: 0.9375rem;
+}
+
+.orders-status--error {
+  color: #dc2626;
+}
+
+.orders-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+}
+
+.orders-empty p {
+  margin: 0 0 1rem;
+  color: #6b7280;
+  font-size: 0.9375rem;
+}
+
+.orders-empty-btn {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.orders-empty-btn:hover {
+  background: #f9fafb;
+}
+
+.orders-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 주문 카드 */
+.orders-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.orders-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.orders-card-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.orders-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+}
+
+.orders-card-icon--done {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.orders-card-icon--shipping {
+  color: #ca8a04;
+  background: #fef9c3;
+}
+
+.orders-card-icon--confirmed,
+.orders-card-icon--processing {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.orders-card-icon--preparing {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.orders-card-icon--muted {
+  color: #6b7280;
+  background: #f3f4f6;
+}
+
+.orders-card-number {
+  margin: 0 0 0.2rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.orders-card-date {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+.orders-card-header-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.orders-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+}
+
+.orders-badge--delivered {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.orders-badge--shipped {
+  color: #a16207;
+  background: #fef9c3;
+}
+
+.orders-badge--confirmed {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.orders-badge--preparing {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.orders-badge--processing {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.orders-badge--muted {
+  color: #6b7280;
+  background: #f3f4f6;
+}
+
+.orders-card-total {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+/* 상품 목록 */
+.orders-card-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orders-card-item {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+}
+
+.orders-card-thumb {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.orders-card-thumb--empty {
+  border: 1px solid #e5e7eb;
+}
+
+.orders-card-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.orders-card-item-name {
+  margin: 0 0 0.2rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.orders-card-item-opt,
+.orders-card-item-qty {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  line-height: 1.45;
+}
+
+.orders-card-item-price {
+  margin: 0.35rem 0 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.orders-card-footer-note {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+.orders-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.orders-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.orders-card-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.orders-page-footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.orders-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: #111;
+  border-radius: 0.5rem;
+  transition: background 0.15s;
+}
+
+.orders-continue-btn:hover {
+  background: #333;
+}
+
+@media (max-width: 480px) {
+  .orders-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .orders-card-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .orders-badge {
+    margin-bottom: 0;
+  }
+}

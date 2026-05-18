@@ -1,0 +1,258 @@
+.olivia-shell {
+  width: 100%;
+  max-width: 88rem;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* ——— Navbar ——— */
+.olivia-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #fff;
+  border-bottom: 1px solid #e8f5e9;
+  box-shadow: 0 1px 0 rgba(46, 125, 50, 0.06);
+}
+
+.olivia-navbar-top {
+  padding: 0.85rem 0 0.75rem;
+}
+
+.olivia-brand-slogan {
+  margin: 0;
+  padding: 0.4rem 1.25rem 0.55rem;
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #f9a825;
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  text-align: left;
+}
+
+.olivia-navbar-top-inner {
+  display: grid;
+  gap: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.4rem;
+  align-items: start;
+}
+
+.olivia-navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: #1565c0;
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+@media (min-width: 900px) {
+  .olivia-navbar-top-inner {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding-top: 0.2rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .olivia-navbar-brand {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+}
+
+.olivia-logo-leaf {
+  font-size: clamp(2.25rem, 5.5vw, 3.65rem);
+  line-height: 1;
+}
+
+.olivia-logo-text {
+  font-size: clamp(2.75rem, 7.5vw, 4.75rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #1565c0;
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  line-height: 1.1;
+}
+
+.olivia-navbar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 900px) {
+  .olivia-navbar-right {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    align-items: flex-end;
+    min-width: 19rem;
+  }
+}
+
+.olivia-search {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  max-width: 22rem;
+  padding: 0.55rem 0.75rem;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+}
+
+@media (min-width: 900px) {
+  .olivia-search {
+    width: 18.5rem;
+  }
+}
+
+.olivia-search-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: #757575;
+  line-height: 1;
+}
+
+.olivia-search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-size: 0.9375rem;
+  outline: none;
+}
+
+.olivia-util {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem 0.35rem;
+  font-size: 0.875rem;
+  color: #616161;
+}
+
+.olivia-util-sep {
+  color: #e0e0e0;
+  margin: 0 0.1rem;
+  user-select: none;
+}
+
+.olivia-util-link {
+  padding: 0.15rem 0.2rem;
+  color: #424242;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.olivia-util-link:hover {
+  color: #2e7d32;
+  text-decoration: underline;
+}
+
+.olivia-util-cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.olivia-cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  background: #1565c0;
+  border-radius: 999px;
+}
+
+.olivia-util-link--btn {
+  cursor: pointer;
+}
+
+.olivia-util-admin {
+  font-weight: 700;
+  color: #c62828;
+}
+
+.olivia-util-admin:hover {
+  color: #b71c1c;
+}
+
+.olivia-util-btn {
+  padding: 0.15rem 0.2rem;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  color: #424242;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.olivia-util-btn:hover {
+  color: #2e7d32;
+  text-decoration: underline;
+}
+
+.olivia-welcome {
+  font-size: 0.875rem;
+  color: #424242;
+  white-space: nowrap;
+}
+
+.olivia-welcome-name {
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+.olivia-mainnav-wrap {
+  border-top: 1px solid #eeeeee;
+}
+
+.olivia-mainnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem 1.5rem;
+  padding: 0.75rem 1.15rem;
+}
+
+.olivia-mainnav-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #37474f;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.olivia-mainnav-link:hover {
+  color: #2e7d32;
+  border-bottom-color: #66bb6a;
+}

@@ -1,0 +1,11 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - shoping_mall_mongo:/data/db
+
+volumes:
+  shoping_mall_mongo:
