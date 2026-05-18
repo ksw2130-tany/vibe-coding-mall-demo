@@ -5,12 +5,12 @@
   "description": "Shopping mall API (Express + MongoDB)",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node src/index.js",
     "dev": "nodemon",
     "start:prod": "node src/index.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

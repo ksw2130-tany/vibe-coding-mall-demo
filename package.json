@@ -1,11 +1,16 @@
 {
   "name": "shoping-mall-demo",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "concurrently -n server,client -c green,blue \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "dev:client": "npm run dev --prefix client",
     "dev:server": "npm run dev --prefix server",
-    "build": "npm run build --prefix client"
+    "build:client": "npm run build --prefix client",
+    "start": "npm run start:prod --prefix server",
+    "heroku-postbuild": "npm ci --prefix server --omit=dev"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
