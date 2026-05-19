@@ -1,7 +1,10 @@
 const bcrypt = require('bcrypt');
+const { OAuth2Client } = require('google-auth-library');
 const { mongoose } = require('../db');
 const User = require('../models/user.model');
 const { signAuthToken } = require('../utils/jwt');
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const SALT_ROUNDS = 10;
 
@@ -217,9 +220,58 @@ async function deleteUser(req, res) {
   }
 }
 
+async function googleLogin(req, res) {
+  try {
+    const { credential } = req.body
+    if (!credential) {
+      return res.status(400).json({ success: false, message: 'Google credential이 없습니다.' })
+    }
+    if (!process.env.GOOGLE_CLIENT_ID) {
+      return res.status(503).json({ success: false, message: 'Google 로그인이 설정되지 않았습니다.' })
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    })
+    const payload = ticket.getPayload()
+    const { sub: googleId, email, name, picture } = payload
+
+    let user = await User.findOne({ $or: [{ googleId }, { email }] })
+
+    if (user) {
+      if (!user.googleId) {
+        user.googleId = googleId
+        await user.save()
+      }
+    } else {
+      user = await User.create({
+        email,
+        name: name || email.split('@')[0],
+        googleId,
+        user_type: 'customer',
+        address: '',
+      })
+    }
+
+    const token = signAuthToken(user)
+    return res.status(200).json({
+      success: true,
+      message: '로그인에 성공했습니다.',
+      token,
+      tokenType: 'Bearer',
+      expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+      user: user.toJSON(),
+    })
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Google 인증에 실패했습니다.' })
+  }
+}
+
 module.exports = {
   createUser,
   loginUser,
+  googleLogin,
   getMe,
   getUsers,
   getUserById,

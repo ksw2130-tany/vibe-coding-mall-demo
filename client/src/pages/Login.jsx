@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import {
   API_BASE_URL,
@@ -9,6 +9,8 @@ import {
   getStoredAuth,
 } from '../lib/auth.js'
 import './Login.css'
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
 /**
  * 서버: `server/src/index.js` → `app.use('/api/users', userRouter)`
@@ -105,6 +107,19 @@ function errorMessageFromResponse(data, fallback) {
   return fallback
 }
 
+function saveAuthAndGo(data, remember, navigate) {
+  const storage = remember ? localStorage : sessionStorage
+  const other = remember ? sessionStorage : localStorage
+  other.removeItem(TOKEN_KEY)
+  other.removeItem(TOKEN_TYPE_KEY)
+  other.removeItem(USER_KEY)
+  storage.setItem(TOKEN_KEY, data.token)
+  if (data.tokenType) storage.setItem(TOKEN_TYPE_KEY, data.tokenType)
+  if (data.user) storage.setItem(USER_KEY, JSON.stringify(data.user))
+  if (data.expiresIn) storage.setItem('auth_token_expires_in', String(data.expiresIn))
+  navigate('/', { replace: true, state: { loginOk: true, userId: data.user?._id } })
+}
+
 export default function Login() {
   const navigate = useNavigate()
   /** 토큰 없음 → 바로 폼. 토큰 있음 → `/me` 검증 후 `go-home` 또는 폼 */
@@ -116,6 +131,7 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
   const [socialHint, setSocialHint] = useState('')
+  const googleBtnRef = useRef(null)
 
   useEffect(() => {
     if (authGate !== 'checking') return undefined
@@ -125,10 +141,49 @@ export default function Login() {
       if (cancelled) return
       setAuthGate(user ? 'go-home' : 'form')
     })()
-    return () => {
-      cancelled = true
-    }
+    return () => { cancelled = true }
   }, [authGate])
+
+  useEffect(() => {
+    if (!GOOGLE_CLIENT_ID || !googleBtnRef.current) return
+    if (typeof window.google === 'undefined') return
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+    })
+    window.google.accounts.id.renderButton(googleBtnRef.current, {
+      type: 'standard',
+      theme: 'outline',
+      size: 'large',
+      text: 'signin_with',
+      shape: 'rectangular',
+      width: '100%',
+      locale: 'ko',
+    })
+  })
+
+  async function handleGoogleCredential({ credential }) {
+    setFormError('')
+    setSubmitting(true)
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/google-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential }),
+      })
+      let data = {}
+      try { data = await res.json() } catch { /* empty */ }
+      if (!res.ok || !data.success) {
+        setFormError(data.message || 'Google 로그인에 실패했습니다.')
+        return
+      }
+      saveAuthAndGo(data, true, navigate)
+    } catch {
+      setFormError('서버에 연결할 수 없습니다.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -170,27 +225,7 @@ export default function Login() {
         return
       }
 
-      const storage = remember ? localStorage : sessionStorage
-      const other = remember ? sessionStorage : localStorage
-      other.removeItem(TOKEN_KEY)
-      other.removeItem(TOKEN_TYPE_KEY)
-      other.removeItem(USER_KEY)
-
-      storage.setItem(TOKEN_KEY, data.token)
-      if (data.tokenType) {
-        storage.setItem(TOKEN_TYPE_KEY, data.tokenType)
-      }
-      if (data.user) {
-        storage.setItem(USER_KEY, JSON.stringify(data.user))
-      }
-      if (data.expiresIn) {
-        storage.setItem('auth_token_expires_in', String(data.expiresIn))
-      }
-
-      navigate('/', {
-        replace: true,
-        state: { loginOk: true, userId: data.user?._id },
-      })
+      saveAuthAndGo(data, remember, navigate)
     } catch {
       setFormError('서버에 연결할 수 없습니다. API 서버가 실행 중인지 확인해 주세요.')
     } finally {
@@ -302,28 +337,18 @@ export default function Login() {
         </div>
 
         <div className="login-social">
-          <button
-            type="button"
-            className="login-social-btn"
-            onClick={() => {
-              setFormError('')
-              setSocialHint('Google 로그인은 준비 중입니다.')
-            }}
-          >
-            <IconGoogle />
-            Google로 로그인
-          </button>
-          <button
-            type="button"
-            className="login-social-btn"
-            onClick={() => {
-              setFormError('')
-              setSocialHint('Facebook 로그인은 준비 중입니다.')
-            }}
-          >
-            <IconFacebook />
-            Facebook으로 로그인
-          </button>
+          {GOOGLE_CLIENT_ID ? (
+            <div ref={googleBtnRef} className="login-google-btn-wrap" />
+          ) : (
+            <button
+              type="button"
+              className="login-social-btn"
+              onClick={() => { setFormError(''); setSocialHint('Google Client ID가 설정되지 않았습니다.') }}
+            >
+              <IconGoogle />
+              Google로 로그인
+            </button>
+          )}
         </div>
 
         <p className="login-footer">

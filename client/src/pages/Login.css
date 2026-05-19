@@ -305,3 +305,9 @@
 .login-footer a:hover {
   text-decoration: underline;
 }
+
+.login-google-btn-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

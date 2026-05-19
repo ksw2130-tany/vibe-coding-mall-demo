@@ -275,3 +275,27 @@
 .signup-footer a:hover {
   text-decoration: underline;
 }
+
+.signup-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  color: #9ca3af;
+  font-size: 0.8125rem;
+}
+
+.signup-divider::before,
+.signup-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.signup-google-btn-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}

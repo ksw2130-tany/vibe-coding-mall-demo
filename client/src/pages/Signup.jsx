@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { API_BASE_URL } from '../lib/auth.js'
+import { API_BASE_URL, TOKEN_KEY, TOKEN_TYPE_KEY, USER_KEY } from '../lib/auth.js'
 import './Signup.css'
 
 const SIGNUP_URL = `${API_BASE_URL}/api/users`
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
 function IconUser() {
   return (
@@ -53,6 +54,7 @@ function IconEye({ open }) {
 
 export default function Signup() {
   const navigate = useNavigate()
+  const googleBtnRef = useRef(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -66,6 +68,50 @@ export default function Signup() {
 
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
+
+  useEffect(() => {
+    if (!GOOGLE_CLIENT_ID || !googleBtnRef.current) return
+    if (typeof window.google === 'undefined') return
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+    })
+    window.google.accounts.id.renderButton(googleBtnRef.current, {
+      type: 'standard',
+      theme: 'outline',
+      size: 'large',
+      text: 'signup_with',
+      shape: 'rectangular',
+      width: '100%',
+      locale: 'ko',
+    })
+  })
+
+  async function handleGoogleCredential({ credential }) {
+    setFormError('')
+    setSubmitting(true)
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/google-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential }),
+      })
+      let data = {}
+      try { data = await res.json() } catch { /* empty */ }
+      if (!res.ok || !data.success) {
+        setFormError(data.message || 'Google 로그인에 실패했습니다.')
+        return
+      }
+      localStorage.setItem(TOKEN_KEY, data.token)
+      if (data.tokenType) localStorage.setItem(TOKEN_TYPE_KEY, data.tokenType)
+      if (data.user) localStorage.setItem(USER_KEY, JSON.stringify(data.user))
+      navigate('/', { replace: true, state: { signupOk: true } })
+    } catch {
+      setFormError('서버에 연결할 수 없습니다.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   const agreeAll = agreeTerms && agreePrivacy && agreeMarketing
 
@@ -319,6 +365,13 @@ export default function Signup() {
             {submitting ? '처리 중…' : '회원가입'}
           </button>
         </form>
+
+        {GOOGLE_CLIENT_ID && (
+          <>
+            <div className="signup-divider" role="separator">또는</div>
+            <div ref={googleBtnRef} className="signup-google-btn-wrap" />
+          </>
+        )}
 
         <p className="signup-footer">
           이미 계정이 있으신가요? <Link to="/login">로그인</Link>
