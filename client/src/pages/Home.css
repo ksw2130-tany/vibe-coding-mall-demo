@@ -6,6 +6,65 @@
   background: #fff;
 }
 
+/* ——— 토스트 알림 ——— */
+.home-toast {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  animation: toastSlideIn 0.3s ease;
+  min-width: 260px;
+  max-width: 90vw;
+}
+
+.home-toast--signup {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.home-toast--login {
+  background: #1565c0;
+  color: #fff;
+}
+
+.home-toast__icon {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.home-toast__msg {
+  flex: 1;
+}
+
+.home-toast__close {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.8;
+  padding: 0 0.2rem;
+  line-height: 1;
+}
+
+.home-toast__close:hover {
+  opacity: 1;
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; top: 0.5rem; }
+  to   { opacity: 1; top: 1.5rem; }
+}
+
 /* 메인 페이지 전용 — 상단 브랜드 */
 .olivia .olivia-brand-slogan {
   font-size: clamp(1.5rem, 4vw, 2.05rem);

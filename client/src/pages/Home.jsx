@@ -309,6 +309,13 @@ export default function Home() {
   const location = useLocation()
   const signupOk = Boolean(location.state?.signupOk)
   const loginOk = Boolean(location.state?.loginOk)
+  const [toast, setToast] = useState(signupOk ? 'signup' : loginOk ? 'login' : null)
+
+  useEffect(() => {
+    if (!toast) return
+    const t = setTimeout(() => setToast(null), 4000)
+    return () => clearTimeout(t)
+  }, [toast])
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -363,18 +370,13 @@ export default function Home() {
       <HomeNavbar />
 
       <main>
-        {(loginOk || signupOk) && (
-          <div className="olivia-shell olivia-alerts" role="region" aria-label="알림">
-            {loginOk ? (
-              <p className="olivia-banner olivia-banner--info" role="status">
-                로그인되었습니다.
-              </p>
-            ) : null}
-            {signupOk ? (
-              <p className="olivia-banner" role="status">
-                회원가입이 완료되었습니다.
-              </p>
-            ) : null}
+        {toast && (
+          <div className={`home-toast home-toast--${toast}`} role="status" aria-live="polite">
+            <span className="home-toast__icon">{toast === 'signup' ? '✓' : '✓'}</span>
+            <span className="home-toast__msg">
+              {toast === 'signup' ? '회원가입이 완료되었습니다. 환영합니다!' : '로그인되었습니다.'}
+            </span>
+            <button className="home-toast__close" onClick={() => setToast(null)} aria-label="닫기">✕</button>
           </div>
         )}
 
