@@ -90,7 +90,7 @@ const HomeNavbar = memo(function HomeNavbar() {
   return (
     <header className="olivia-navbar" role="banner">
       <div className="olivia-navbar-top">
-        <p className="olivia-brand-slogan">정이 살아 숨쉬는 장소</p>
+        <p className="olivia-brand-slogan">타니와 뽀뽀가 있는곳!!!</p>
         <div className="olivia-shell olivia-navbar-top-inner">
           <Link to="/" className="olivia-navbar-brand" aria-label="경안 슈퍼 홈">
             <span className="olivia-logo-leaf" aria-hidden>
