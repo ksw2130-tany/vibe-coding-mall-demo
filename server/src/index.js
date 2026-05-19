@@ -63,20 +63,27 @@ app.get('/api/health', (_req, res) => {
 async function main() {
   const { uri: mongoUri, source: mongoSource } = resolveMongoUri();
 
-  await connectDB(mongoUri);
-  console.log(
-    mongoSource === 'atlas'
-      ? 'MongoDB connected (Atlas — MONGODB_ATLAS_URL)'
-      : 'MongoDB connected (local — MONGODB_URI)'
-  );
-
   if (!process.env.JWT_SECRET || !String(process.env.JWT_SECRET).trim()) {
-    console.warn('[WARN] JWT_SECRET이 비어 있습니다. 로그인 시 토큰 발급이 실패합니다. server/.env 를 확인하세요.');
+    console.warn('[WARN] JWT_SECRET이 비어 있습니다. 로그인 시 토큰 발급이 실패합니다.');
   }
 
+  // 포트를 먼저 열어 Heroku 헬스체크를 통과시킨 뒤 MongoDB에 연결
   app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
   });
+
+  try {
+    await connectDB(mongoUri);
+    console.log(
+      mongoSource === 'atlas'
+        ? 'MongoDB connected (Atlas — MONGODB_ATLAS_URL)'
+        : 'MongoDB connected (local — MONGODB_URI)'
+    );
+  } catch (err) {
+    console.error('[ERROR] MongoDB 연결 실패:', err.message);
+    console.error('MONGODB_ATLAS_URL 환경변수와 Atlas Network Access(0.0.0.0/0)를 확인하세요.');
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {
